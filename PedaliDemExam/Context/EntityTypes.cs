@@ -149,6 +149,13 @@ namespace PedaliDemExam.Context
             Category.Woman => "Женская обувь",
             Category.Man => "Мужская обувь",
         };
+
+        public decimal DiscountPrice => Price - Price * ((Decimal)Discount / 100m);
+        public string CategoryAndTitle => CategoryText + " | " + ProductTypes.Title;
+        public string ImageUrl => string.IsNullOrEmpty(Image) ? "/Assets/picture.png" : $"/Assets/{Image}";
+
+        public bool IsDiscountGreaterThen0 => Discount > 0;
+        public bool IsDiscountGreaterThen15 => Discount > 15;
     }
     public class Order
     {

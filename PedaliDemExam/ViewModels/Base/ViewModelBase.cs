@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PedaliDemExam.ViewModels.Base
@@ -17,6 +18,13 @@ namespace PedaliDemExam.ViewModels.Base
             field = value;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             return true;
+        }
+        protected void OpenNewWindowThenCloseOld(Window windowToOpen)
+        {
+            var temp = Application.Current.MainWindow;
+            Application.Current.MainWindow = windowToOpen;
+            temp.Close();
+            windowToOpen.Show();
         }
     }
     public class RelayCommand : ICommand

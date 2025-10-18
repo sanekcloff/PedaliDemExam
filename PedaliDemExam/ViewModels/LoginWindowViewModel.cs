@@ -1,5 +1,6 @@
 ﻿using PedaliDemExam.Context;
 using PedaliDemExam.ViewModels.Base;
+using PedaliDemExam.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,17 @@ namespace PedaliDemExam.ViewModels
             {
                 var user = _ctx.Users.FirstOrDefault(u=>u.Login == _login && u.Password == _password);
                 if (user != null)
+                {
                     MessageBox.Show($"Вход под учётной записью {user.FullName}. Роль: {user.RoleText}","Успешно",MessageBoxButton.OK,MessageBoxImage.Information);
+                    OpenNewWindowThenCloseOld(new ProductsWindow(_ctx, user));
+                }
                 else
                 {
                     var result = MessageBox.Show($"Данные не найдены, войти как гость?", "Успешно", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (result == MessageBoxResult.Yes)
                     {
                         MessageBox.Show($"Вход как гость", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                        OpenNewWindowThenCloseOld(new ProductsWindow(_ctx, null));
                     }
 
                 }

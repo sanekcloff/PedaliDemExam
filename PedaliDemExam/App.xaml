@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:PedaliDemExam"
              StartupUri="Views/LoginWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="PrimaryColor" Color="White"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#7FFF00"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#00FA9A"/>
+        <SolidColorBrush x:Key="DiscountColor" Color="#2E8B57"/>
     </Application.Resources>
 </Application>
