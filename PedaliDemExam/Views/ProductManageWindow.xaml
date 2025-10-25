@@ -19,7 +19,7 @@
             <TextBox Text="{Binding LocalProduct.Article, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Text="Тип"/>
-            <ComboBox SelectedItem="{Binding LocalProduct.ProductTypes, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox SelectedItem="{Binding LocalProduct.ProductTypes, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ProductTypes}" DisplayMemberPath="Title"/>
 
             <TextBlock Text="Единица измерения"/>
             <TextBox Text="{Binding LocalProduct.UnitOfMeasurement, UpdateSourceTrigger=PropertyChanged}"/>
@@ -28,13 +28,13 @@
             <TextBox Text="{Binding LocalProduct.Price, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Text="Производитель"/>
-            <ComboBox SelectedItem="{Binding LocalProduct.Manufacturer, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox SelectedItem="{Binding LocalProduct.Manufacturer, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Manufacturers}" DisplayMemberPath="Title"/>
 
             <TextBlock Text="Поставщик"/>
-            <ComboBox SelectedItem="{Binding LocalProduct.Provider, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox SelectedItem="{Binding LocalProduct.Provider, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Providers}" DisplayMemberPath="Title"/>
 
             <TextBlock Text="Категория"/>
-            <ComboBox SelectedItem="{Binding LocalProduct.ProductCategory, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox SelectedItem="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Categories}"/>
             
             <TextBlock Text="Cкидка"/>
             <TextBox Text="{Binding LocalProduct.Discount, UpdateSourceTrigger=PropertyChanged}"/>
@@ -47,6 +47,8 @@
             
             <TextBlock Text="Изображение"/>
             <TextBox Text="{Binding LocalProduct.Image, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Content="Спасти и сохранить" Height="30" Width="150" Margin="10" Command="{Binding ActionCommand}" ToolTip="Нажми чтобы Аминь"/>
 
         </StackPanel>
         

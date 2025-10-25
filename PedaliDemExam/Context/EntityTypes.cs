@@ -96,6 +96,8 @@ namespace PedaliDemExam.Context
     }
     public class Product
     {
+        private int discount;
+
         public Product()
         {
             Article = string.Empty;
@@ -124,6 +126,10 @@ namespace PedaliDemExam.Context
             Description = description;
             Image = image;
         }
+        public Product(Product product)
+        {
+            Update(product);
+        }
 
         public enum Category
         {
@@ -140,7 +146,11 @@ namespace PedaliDemExam.Context
         public int ManufacturerId { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public Category ProductCategory { get; set; }
-        public int Discount { get; set; }
+        public int Discount 
+        { 
+            get => discount; 
+            set => discount = Math.Clamp(value,0,100); 
+        }
         public int CountOnStorage { get; set; }
         public string Description { get; set; }
         public string? Image { get; set; }
@@ -152,12 +162,27 @@ namespace PedaliDemExam.Context
 
         public decimal DiscountPrice => Price - Price * ((Decimal)Discount / 100m);
         public string CategoryAndTitle => CategoryText + " | " + ProductTypes.Title;
-        public string ImageUrl => string.IsNullOrEmpty(Image) ? "/Assets/picture.png" : $"/Assets/{Image}";
+        public string ImageUrl => string.IsNullOrWhiteSpace(Image) ? "/Assets/picture.png" : $"/Assets/{Image}";
 
         public bool IsDiscountGreaterThen0 => Discount > 0;
         public bool IsDiscountGreaterThen15 => Discount > 15;
 
         public ICollection<Order> Orders { get;set; }
+
+        public void Update(Product product)
+        {
+            Article = product.Article;
+            ProductTypes = product.ProductTypes;
+            UnitOfMeasurement = product.UnitOfMeasurement;
+            Price = product.Price;
+            Provider = product.Provider;
+            Manufacturer = product.Manufacturer;
+            ProductCategory = product.ProductCategory;
+            Discount = product.Discount;
+            CountOnStorage = product.CountOnStorage;
+            Description = product.Description;
+            Image = product.Image;
+        }
     }
     public class Order
     {
