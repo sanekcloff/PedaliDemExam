@@ -156,6 +156,8 @@ namespace PedaliDemExam.Context
 
         public bool IsDiscountGreaterThen0 => Discount > 0;
         public bool IsDiscountGreaterThen15 => Discount > 15;
+
+        public ICollection<Order> Orders { get;set; }
     }
     public class Order
     {

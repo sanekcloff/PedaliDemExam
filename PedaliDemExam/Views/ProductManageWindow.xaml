@@ -1,0 +1,55 @@
+﻿<Window x:Class="PedaliDemExam.Views.ProductManageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PedaliDemExam.Views"
+        xmlns:vm="clr-namespace:PedaliDemExam.ViewModels"
+        mc:Ignorable="d"
+        Title="ProductManageWindow" Height="450" Width="400" FontFamily="Times New Roman" Icon="/Assets/App/Icon.ico">
+    <Window.DataContext>
+        <vm:ProductManageWindowViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+
+        <StackPanel Orientation="Vertical" Margin="15">
+
+            <TextBlock Text="Артикул"/>
+            <TextBox Text="{Binding LocalProduct.Article, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Тип"/>
+            <ComboBox SelectedItem="{Binding LocalProduct.ProductTypes, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Единица измерения"/>
+            <TextBox Text="{Binding LocalProduct.UnitOfMeasurement, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Стоимость"/>
+            <TextBox Text="{Binding LocalProduct.Price, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Производитель"/>
+            <ComboBox SelectedItem="{Binding LocalProduct.Manufacturer, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Поставщик"/>
+            <ComboBox SelectedItem="{Binding LocalProduct.Provider, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Text="Категория"/>
+            <ComboBox SelectedItem="{Binding LocalProduct.ProductCategory, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <TextBlock Text="Cкидка"/>
+            <TextBox Text="{Binding LocalProduct.Discount, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <TextBlock Text="Количество на складе"/>
+            <TextBox Text="{Binding LocalProduct.CountOnStorage, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <TextBlock Text="Описание"/>
+            <TextBox Text="{Binding LocalProduct.Description, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <TextBlock Text="Изображение"/>
+            <TextBox Text="{Binding LocalProduct.Image, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </StackPanel>
+        
+    </Grid>
+    
+</Window>

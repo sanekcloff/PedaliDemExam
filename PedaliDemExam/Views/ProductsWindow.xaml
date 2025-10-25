@@ -29,21 +29,25 @@
 
             <Image Source="/Assets/App/Icon.png" Margin="5" Stretch="Uniform"/>
 
-            <Button x:Name="AddProductButton" Content="Добавить" Height="50" Width="50" FontSize="10" Margin="5"/>
+            <Button x:Name="AddProductButton" Content="Добавить" Height="50" Width="50" FontSize="10" Margin="5" Command="{Binding AddProductCommand}"/>
 
         </StackPanel>
         
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
 
-            <TextBox x:Name="SearchTextBox" Text="" Width="150" Margin="5" Height="30"/>
+            <TextBox x:Name="SearchTextBox" Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="5" Height="30"/>
 
-            <ComboBox x:Name="SortComboBox" Width="150" Margin="5" Height="30"/>
+            <ComboBox x:Name="SortComboBox" Width="150" Margin="5" Height="30" ItemsSource="{Binding SortValues}" SelectedValue="{Binding SortValue}"/>
             
-            <ComboBox x:Name="FilthComboBox" Width="150" Margin="5" Height="30"/>
+            <ComboBox x:Name="FilthComboBox" Width="150" Margin="5" Height="30" ItemsSource="{Binding FilthValues}" SelectedValue="{Binding FilthValue}"/>
 
         </StackPanel>
 
         <ListView Grid.Row="2" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
+
+            <ListView.InputBindings>
+                <KeyBinding Key="Delete" Command="{Binding DeleteProductCommand}"/>
+            </ListView.InputBindings>
 
             <ListView.ItemContainerStyle>
 
@@ -53,6 +57,11 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
                                 <Border Margin="10" Background="{TemplateBinding Background}">
+                                    
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DataContext.UpdateProductCommand, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                                    </Border.InputBindings>
+                                    
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="80"/>
